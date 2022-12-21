@@ -92,7 +92,79 @@ class _Shop_HelpState extends State<Shop_Help> {
                               style: const TextStyle(fontSize: 14),
                             ),
                           ),
-                        ]
+                          Row(
+                            children: [
+                              Container(
+                                width: 150,
+                                height: 50,
+                                padding: const EdgeInsets.all(3),
+                                child: TextField(
+                                  scrollPadding: const EdgeInsets.all(3),
+                                  textAlign: TextAlign.center,
+                                  controller: lsItems[index].quantity,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      int count = int.parse(
+                                          lsItems[index].quantity.text);
+                                      setState(() {
+                                        count++;
+                                        lsItems[index].quantity.text = (count)
+                                            .toString(); // incrementing value
+                                      });
+                                    },
+                                    icon: const Icon(
+                                      Icons.arrow_drop_up_outlined,
+                                      size: 35,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      int count = int.parse(
+                                          lsItems[index].quantity.text);
+                                      setState(() {
+                                        count--;
+                                        lsItems[index].quantity.text = (count)
+                                            .toString(); // incrementing value
+                                      });
+                                    },
+                                    icon: const Icon(
+                                      Icons.arrow_drop_down_outlined,
+                                      size: 35,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: ElevatedButton(
+                                    style: const ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStatePropertyAll<Color>(
+                                              Colors.green),
+                                    ),
+                                    onPressed: () {},
+                                    child: const Text(
+                                      'Buy',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   ),
