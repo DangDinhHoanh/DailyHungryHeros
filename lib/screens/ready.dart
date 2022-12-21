@@ -123,7 +123,26 @@ class _ReadyState extends State<Ready> {
             color: Colors.white.withOpacity(0.5),
             controller: _controller,
           ),
-        ]
+          Container(
+              alignment: AlignmentDirectional.bottomEnd,
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                    onPressed: () {
+                      status = !status;
+                      return status ? _controller.open() : _controller.close();
+                    },
+                  ),
+                ],
+              ))
+        ],
       ),
     );
   }
