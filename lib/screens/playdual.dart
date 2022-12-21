@@ -146,7 +146,222 @@ class _PlayDualState extends State<PlayDual> {
           Stack(
             alignment: AlignmentDirectional.center,
             children: [
-
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height / 3,
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 100),
+                    decoration: const BoxDecoration(
+                      color: Color.fromRGBO(202, 45, 5, 1),
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height / 8,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 30, top: 10),
+                                    alignment: AlignmentDirectional.centerEnd,
+                                    child: Text(
+                                      nickname1.toUpperCase(),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 4.5,
+                                child: Image.asset(
+                                  'assets/icon/rank-3.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 5,
+                                  itemBuilder: (context, index) => const Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height / 3,
+                    padding: const EdgeInsets.fromLTRB(10, 100, 10, 15),
+                    decoration: const BoxDecoration(
+                      color: Color.fromRGBO(3, 178, 217, 1),
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: !isfind
+                          ? Row()
+                          : ishas
+                              ? Row(
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              4.5,
+                                          child: Image.asset(
+                                            'assets/icon/rank-5.png',
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 15,
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: 5,
+                                            itemBuilder: (context, index) =>
+                                                const Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            margin: const EdgeInsets.only(
+                                                left: 20, bottom: 10),
+                                            alignment: AlignmentDirectional
+                                                .centerStart,
+                                            child: Text(
+                                              nickname2.toUpperCase(),
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Stack(
+                                      alignment: AlignmentDirectional.center,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Image.asset(
+                                              'assets/icon/loadding.gif',
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  6,
+                                              fit: BoxFit.cover,
+                                            ),
+                                            Text(
+                                              formatedTime(timeInSecond: time)
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              60,
+                                          alignment:
+                                              AlignmentDirectional.centerEnd,
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              setState(() {
+                                                isfind = false;
+                                                time = 0;
+                                              });
+                                              await firestore
+                                                  .collection('counters')
+                                                  .doc('wait')
+                                                  .get()
+                                                  .then((value) {
+                                                if (value.exists) {
+                                                  firestore
+                                                      .collection('matches')
+                                                      .doc((value.get(
+                                                                  'counter') -
+                                                              1)
+                                                          .toString())
+                                                      .delete();
+                                                  firestore
+                                                      .collection('counters')
+                                                      .doc('wait')
+                                                      .update({
+                                                    'counter':
+                                                        value.get('counter') - 1
+                                                  });
+                                                }
+                                              });
+                                            },
+                                            child: Image.asset(
+                                              'assets/icon/cancel.png',
+                                              width: 70,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(
                 child: ishas
                     ? Image.asset(
