@@ -250,7 +250,134 @@ class _MenuState extends State<Menu> {
                             ),
                           ),
                         ),
-                      ]
+                        Container(
+                          margin: const EdgeInsets.all(10),
+                          child: TextButton(
+                            onPressed: () {
+                              _closeEndDrawer();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (content) => Profile()),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(right: 30),
+                                  child: Image.asset(
+                                    'assets/icon/friend.png',
+                                    width: 40,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const Text(
+                                  'Friends',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(10),
+                          child: TextButton(
+                            onPressed: () {
+                              _closeEndDrawer();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (content) => Shop(),
+                                ),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(right: 30),
+                                  child: Image.asset(
+                                    'assets/icon/shop.png',
+                                    width: 40,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const Text(
+                                  'Shop',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(10),
+                          child: TextButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content:
+                                        const Text('Do you want sign out ?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('No'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () async {
+                                          FirebaseAuth.instance.signOut();
+                                          await Navigator
+                                              .pushNamedAndRemoveUntil(
+                                            context,
+                                            'login',
+                                            (route) => false,
+                                          );
+
+                                          final snackBar = SnackBar(
+                                            content: Text('Logged out'),
+                                          );
+
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        },
+                                        child: const Text('Yes'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(right: 30),
+                                  child: Image.asset(
+                                    'assets/icon/sign_out.png',
+                                    width: 40,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const Text(
+                                  'Sign out',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
