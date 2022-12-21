@@ -162,7 +162,82 @@ class _GetCodeState extends State<GetCode> {
               ),
             ],
           ),
-        ]
+          BottomDrawer(
+            header: Container(
+              alignment: AlignmentDirectional.topCenter,
+              width: MediaQuery.of(context).size.width,
+            ),
+            body: Container(
+              alignment: AlignmentDirectional.bottomEnd,
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Login()),
+                        (route) => false),
+                    child: Container(
+                      alignment: AlignmentDirectional.centerEnd,
+                      width: MediaQuery.of(context).size.width,
+                      child: const Text(
+                        'Sign in again',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 96, 69, 59),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Register()),
+                        (route) => false),
+                    child: Container(
+                      alignment: AlignmentDirectional.centerEnd,
+                      width: MediaQuery.of(context).size.width,
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 96, 69, 59),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            headerHeight: 0,
+            drawerHeight: 170,
+            color: Colors.white.withOpacity(0.5),
+            controller: _controller,
+          ),
+          Container(
+              alignment: AlignmentDirectional.bottomEnd,
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                    onPressed: () {
+                      status = !status;
+                      return status ? _controller.open() : _controller.close();
+                    },
+                  ),
+                ],
+              ))
+        ],
       ),
     );
   }
