@@ -521,6 +521,21 @@ class _ResultState extends State<Result> {
           ),
         ],
       ),
+      bottomNavigationBar: Container(
+          padding: const EdgeInsets.only(left: 20),
+          height: 50,
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 11, 52, 86),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: const Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          child: Container()),
     );
   }
 }
