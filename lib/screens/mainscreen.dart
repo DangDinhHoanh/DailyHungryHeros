@@ -187,7 +187,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: PlaySingle(),
       endDrawer: Menu(),
-
+      bottomNavigationBar: Container(
         height: MediaQuery.of(context).size.height / 12,
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
