@@ -105,7 +105,60 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     ),
                   ],
                 ),
-              ]
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(5, 10, 0, 0),
+                        width: (MediaQuery.of(context).size.width - 30) / 2,
+                        height: MediaQuery.of(context).size.height / 6 - 10,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              widget.item.answers[2],
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(5, 10, 0, 0),
+                        width: (MediaQuery.of(context).size.width - 30) / 2,
+                        height: MediaQuery.of(context).size.height / 6 - 10,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              widget.item.answers[3],
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],
