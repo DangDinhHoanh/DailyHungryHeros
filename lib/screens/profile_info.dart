@@ -84,7 +84,118 @@ class _Profile_InfoState extends State<Profile_Info> {
                 ],
               ),
             ),
-          ]
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.green,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 2.5 / 3,
+                        height: 70,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Image(
+                                    image:
+                                        const AssetImage('assets/icon/ask.png'),
+                                    width:
+                                        MediaQuery.of(context).size.height / 20,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                  child: Text(
+                                    '3',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Image(
+                                    image: const AssetImage(
+                                        'assets/icon/50-50.png'),
+                                    width:
+                                        MediaQuery.of(context).size.height / 20,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                  child: Text(
+                                    '1',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Image(
+                                    image: const AssetImage(
+                                        'assets/icon/pass.png'),
+                                    width:
+                                        MediaQuery.of(context).size.height / 20,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                  child: Text(
+                                    '1',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (content) => Shop(),
+                            ),
+                          ),
+                          icon: const Icon(
+                            Icons.shopping_cart,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ));
   }
 }
