@@ -138,6 +138,7 @@ class _DualScreenState extends State<DualScreen> {
     );
   }
 
+  Container buildQuestion(Question question) {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
